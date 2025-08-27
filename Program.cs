@@ -1,10 +1,17 @@
+using Microsoft.EntityFrameworkCore;
+
 namespace JustTesting
 {
     public class Program
     {
         public static void Main(string[] args)
         {
+
+
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddDbContext<Data.DContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
